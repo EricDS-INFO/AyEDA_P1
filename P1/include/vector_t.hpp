@@ -37,14 +37,23 @@ class Vector_T
 
         int size(void) const;
 
+        void resize(int nsz);
+
         TData& at(int pos);
         TData  value(int pos) const;
 
+        void push_front( TData value);
+        void push_back( TData value);
+
+        TData& operator [](int pos);
+        TData  operator [](int pos) const;
+    
     
     private:
         void create(void);
         void destroy(void);
 };
+
 
 // PUBLIC METHODS
 
@@ -66,14 +75,20 @@ Vector_T<TData>::~Vector_T(void){
   destroy(); 
 }
 
-
-
 template<class TData>
 int Vector_T<TData>::size(void) const
 {
     return sz_;
 }
 
+
+template<class TData>
+void Vector_T<TData>::resize(int nsz)
+{
+    destroy();
+    sz_ = nsz;
+    create();
+}
 
 template<class TData>
 TData Vector_T<TData>::value(int pos) const
@@ -89,9 +104,57 @@ TData& Vector_T<TData>::at(int pos)
     return vp_[pos];
 }
 
+template<class TData>
+void Vector_T<TData>::push_front( TData value)
+{
+    Vector_T aux_v(sz_);
+
+    for (int i = 0; i < sz_; i++) {
+        aux_v[i] = vp_[i];
+    }
+
+    resize(sz_ + 1);
+    vp_[0] = value;
+
+    for (int i = 1; i < sz_; i++) {
+        vp_[i] = aux_v[i - 1];
+    }
+}
+
+template<class TData>
+void Vector_T<TData>::push_back( TData value)
+{    
+    Vector_T aux_v(sz_);
+
+    for (int i = 0; i < sz_; i++) {
+        aux_v[i] = vp_[i];
+    }
+    resize(sz_ + 1);
+    vp_[sz_ - 1] = value;
+
+    for (int i = 0; i < sz_ - 1; i++) {
+        vp_[i] = aux_v[i];
+    }
+}
+
+
+// OPERATORS
+
+template<class TData>
+TData& Vector_T<TData>::operator [](int pos)
+{
+    return at(pos);
+}
+
+template<class TData>
+TData  Vector_T<TData>::operator [](int pos) const{
+    return value(pos);
+}
+    
 
 
 // PRIVATE METHODS
+
 template<class TData>
 void Vector_T<TData>::create(void)
 {
