@@ -20,6 +20,9 @@
 
 #include "../include/vector_t.hpp"
 
+#include "../include/dll_t.hpp"
+#include "../include/dll_node_t.hpp"
+
 // Unit Testing style tests
 
 TEST_CASE( "The vector class tests basic operations", "[Vector_t]" ) 
@@ -86,27 +89,33 @@ TEST_CASE( "The vector class tests basic operations", "[Vector_t]" )
   }
 }
 
-template<class TData>
-class DLL_T 
-{
 
-};
-
-
-template<class TData>
-class DLL_Node_t
-{
-
-};
 
 // BDD Style tests
 
 SCENARIO( "The doubly linked list basic tests", "[DLL_T]" ) 
 {
-  GIVEN("An instance of DLL_T and DLL_Node_T")
+  GIVEN("An instance of DLL_T and 2 DLL_Node_T")
   {
     DLL_T<char> list1;
-    DLL_Node_t<char> node1();
+    DLL_Node_t<char> node1('a');
+    DLL_Node_t<char> node2('b');
+    
+    SECTION("Nodes were built successfully:")
+    {
+      CHECK( node1.get_next() == NULL);
+      CHECK( node1.get_prev() == NULL);
+      CHECK( node1.get_value() == 'a');
+      CHECK( node2.get_next() == NULL);
+      CHECK( node2.get_prev() == NULL);
+      CHECK( node2.get_value() == 'b');
+    }
+
+    WHEN("the nodes are both pushed")
+    {
+      list1.push_back(node2);
+      list1.push_front(node1);
+    }
 
   }
 
