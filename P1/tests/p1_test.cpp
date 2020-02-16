@@ -25,7 +25,7 @@
 
 // Unit Testing style tests
 
-TEST_CASE( "The vector class tests basic operations", "[Vector_t]" ) 
+TEST_CASE( "The vector class tests basic operations", "[Vector_T]" ) 
 {
   Vector_T<int> v1(2);
   REQUIRE (v1.size() == 2);
@@ -158,4 +158,9 @@ TEST_CASE( "The doubly linked list basic tests", "[DLL_T]" )
       }
     
   
+}
+
+TEST_CASE("The stack class tests basic operations", "[Stack_T]")
+{
+
 }
