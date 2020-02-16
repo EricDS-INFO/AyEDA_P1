@@ -98,9 +98,11 @@ SCENARIO( "The doubly linked list basic tests", "[DLL_T]" )
   GIVEN("An instance of DLL_T and 2 DLL_Node_T")
   {
     DLL_T<char> list1;
-    DLL_Node_t<char> node1('a');
-    DLL_Node_t<char> node2('b');
+    DLL_Node_T<char> node1('a');
+    DLL_Node_T<char> node2('b');
     
+    REQUIRE(list1.empty() == true);
+
     SECTION("Nodes were built successfully:")
     {
       CHECK( node1.get_next() == NULL);
@@ -113,8 +115,16 @@ SCENARIO( "The doubly linked list basic tests", "[DLL_T]" )
 
     WHEN("the nodes are both pushed")
     {
-      list1.push_back(node2);
-      list1.push_front(node1);
+      list1.push_back(&node2);
+      list1.push_front(&node1);
+      
+      THEN("The size increase and nodes were put right")
+      {
+        REQUIRE(list1.size() == 2);
+        CHECK(list1.get_front()->get_value() == 'a' );
+        CHECK(list1.get_back()->get_value() == 'b' );
+      }
+
     }
 
   }
