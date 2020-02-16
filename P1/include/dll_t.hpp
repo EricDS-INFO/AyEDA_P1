@@ -1,6 +1,9 @@
 // [dll_t.hpp]
 //
 // AUTOR: Eric Dürr Sierra.
+// EMAIL:   alu0101027005@ull.edu.es || eric.d.s.info@gmail.com
+// CONTACT: 622435010
+//
 // DATE:  February 2020
 // 
 // SUBJECT: AyEDA (Algoritmos y Estructuras de Datos Avanzadas)
