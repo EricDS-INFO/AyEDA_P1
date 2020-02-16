@@ -1,3 +1,22 @@
+// [dll_t.hpp]
+//
+// AUTOR: Eric Dürr Sierra.
+// DATE:  February 2020
+// 
+// SUBJECT: AyEDA (Algoritmos y Estructuras de Datos Avanzadas)
+//
+// Ingeniería informática - ESIT ULL 
+// (Escuela Superior de Ingeniería y Tecnología - Universidad de La Laguna)
+//
+// DESCRIPTION:
+/*
+    This is a doubly linked list, template based
+    class implementation. Just the basic methods
+    and overloads.
+
+    It uses the "DLL_Node_T" class.
+*/
+
 #include "dll_node_t.hpp"
 
 
@@ -27,6 +46,10 @@ class DLL_T
         bool contains(DLL_Node_T<TData>* node);
         bool empty(void);
 
+        std::ostream& write(std::ostream& os) const;
+
+        template<class U>
+        friend std::ostream& operator <<(std::ostream& os, DLL_T<U>& list);
         
 };
 
@@ -85,11 +108,46 @@ void DLL_T<TData>::push_back(DLL_Node_T<TData>* node)
 
 template<class TData>
 DLL_Node_T<TData>* DLL_T<TData>::extract_back(void)
-{}
+{
+    assert(!empty());
+    DLL_Node_T<TData>* ex_node = tail_;
+
+    tail_= tail_->get_prev();
+    if (tail_ == NULL) {
+        head_ = NULL;
+    } else {
+        tail_->set_next(NULL);
+    }
+
+    sz_ --;
+
+    ex_node->set_next(NULL);
+    ex_node->set_prev(NULL);
+
+    return ex_node;
+}
 
 template<class TData>
 DLL_Node_T<TData>* DLL_T<TData>::extract_front(void)
-{}
+{
+    assert(!empty());
+
+    DLL_Node_T<TData>* ex_node = head_;
+
+    head_ = head_->get_next();
+    if (head_ == NULL) {
+        tail_ = NULL;
+    } else {
+        head_ ->set_prev(NULL);
+    }
+
+    sz_ --;
+
+    ex_node->set_next(NULL);
+    ex_node->set_prev(NULL);
+
+    return ex_node;
+}
 
 template<class TData>
 DLL_Node_T<TData>* DLL_T<TData>::get_back(void)
@@ -112,7 +170,17 @@ int DLL_T<TData>::size(void)
 
 template<class TData>
 bool DLL_T<TData>::contains(DLL_Node_T<TData>* node)
-{}
+{
+    DLL_Node_T<TData>* aux = head_;
+
+    while (aux) {
+        if (aux == node) {
+            return true;
+        }
+        aux = aux->get_next();
+    }
+    return false;
+}
 
 template<class TData>
 bool DLL_T<TData>::empty(void)
@@ -123,3 +191,33 @@ bool DLL_T<TData>::empty(void)
 
 }
         
+
+template<class TData>
+std::ostream& DLL_T<TData>::write(std::ostream& os) const
+{
+    DLL_Node_T<TData>* aux = head_;
+ 
+    os << "SIZE" << std::endl;
+
+    os << "head -> ";
+    if (aux == tail_ && aux == NULL) {
+        os << "-EMPTY- ";
+    } else {
+
+        while (aux) {
+            os << "[" << aux->get_value() << "] ";
+            aux = aux->get_next();
+        }
+    }
+    os << "<- tail" << std::endl;
+
+    return os;
+}
+
+
+template<class TData>
+std::ostream& operator <<(std::ostream& os, DLL_T<TData>& list)
+{
+    list.write(os);
+    return os;
+}

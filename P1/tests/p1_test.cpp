@@ -82,6 +82,7 @@ TEST_CASE( "The vector class tests basic operations", "[Vector_t]" )
 
   SECTION("Reading and writting the vector") 
   {    
+    std::cout << "\n\n TESTING THE VECTOR \n";
     v1[0] = 1;
     v1[1] = 2;
     std::cout << v1 << std::endl;
@@ -91,42 +92,70 @@ TEST_CASE( "The vector class tests basic operations", "[Vector_t]" )
 
 
 
-// BDD Style tests
-
-SCENARIO( "The doubly linked list basic tests", "[DLL_T]" ) 
+TEST_CASE( "The doubly linked list basic tests", "[DLL_T]" ) 
 {
-  GIVEN("An instance of DLL_T and 2 DLL_Node_T")
-  {
     DLL_T<char> list1;
-    DLL_Node_T<char> node1('a');
-    DLL_Node_T<char> node2('b');
     
     REQUIRE(list1.empty() == true);
 
-    SECTION("Nodes were built successfully:")
+    SECTION("pushing nodes")
     {
-      CHECK( node1.get_next() == NULL);
-      CHECK( node1.get_prev() == NULL);
-      CHECK( node1.get_value() == 'a');
-      CHECK( node2.get_next() == NULL);
-      CHECK( node2.get_prev() == NULL);
-      CHECK( node2.get_value() == 'b');
-    }
+      list1.push_front(new DLL_Node_T<char>('a'));
+      list1.push_back(new DLL_Node_T<char>('b'));
+    
+      REQUIRE(list1.size() == 2);
+      CHECK(list1.get_front()->get_value() == 'a' );
+      CHECK(list1.get_back()->get_value() == 'b' );
+    
 
-    WHEN("the nodes are both pushed")
-    {
-      list1.push_back(&node2);
-      list1.push_front(&node1);
-      
-      THEN("The size increase and nodes were put right")
+      SECTION("One node is extracted from the back")
       {
-        REQUIRE(list1.size() == 2);
-        CHECK(list1.get_front()->get_value() == 'a' );
-        CHECK(list1.get_back()->get_value() == 'b' );
+        list1.extract_back();
+        
+        REQUIRE(list1.size() == 1);
+        CHECK(list1.get_front()->get_value() == 'a');
+        CHECK(list1.get_back()->get_value() == 'a');
+        CHECK( list1.get_back()->get_value() ==
+               list1.get_front()->get_value() );
+        
+      }
+      SECTION("One node is extracted from the front")
+      {
+        list1.extract_front();
+
+        REQUIRE(list1.size() == 1);
+        CHECK(list1.get_front()->get_value() == 'b');
+        CHECK(list1.get_back()->get_value() == 'b');
+        CHECK( list1.get_back()->get_value() ==
+               list1.get_front()->get_value() );
+        
       }
 
+      SECTION("A certain node can be searched in the list")
+      {
+        DLL_Node_T<char>* not_in = new DLL_Node_T<char>('c'); 
+
+        DLL_Node_T<char>* yet_in = list1.get_front();
+        
+        CHECK(list1.contains(yet_in) == true);
+        CHECK(list1.contains(not_in) == false);
+      }
+
+      SECTION("Reading a not empty list: ")
+      {
+        std::cout << "\n\nTESTING NOT EMPTY LIST" << std::endl;
+        
+        std::cout << list1 << std::endl;
+      }
+    
     }
 
-  }
-
+      SECTION("Reading an empty list: ")
+      {
+        std::cout << "\n\nTESTING  EMPTY LIST" << std::endl;
+        list1.write(std::cout);
+        //std::cout << list1 << std::endl;
+      }
+    
+  
 }

@@ -1,4 +1,24 @@
+// [dll_node_t.hpp]
+//
+// AUTOR: Eric Dürr Sierra.
+// DATE:  February 2020
+// 
+// SUBJECT: AyEDA (Algoritmos y Estructuras de Datos Avanzadas)
+//
+// Ingeniería informática - ESIT ULL 
+// (Escuela Superior de Ingeniería y Tecnología - Universidad de La Laguna)
+//
+// DESCRIPTION:
+/*
+    This is a doubly linked list node , template based
+    class implementation. Just the basic methods
+    and overloads.
+*/
+
+
+
 #include <iostream>
+#include <cstdio>
 #pragma once
 
 template<class TData>
@@ -22,7 +42,7 @@ class DLL_Node_T
         void set_next(DLL_Node_T<TData>* next);
         void set_prev(DLL_Node_T<TData>* prev);
 
-        TData get_value(void) const;
+        const TData get_value(void) const;
 
         DLL_Node_T<TData>* get_next(void) const;
         DLL_Node_T<TData>* get_prev(void) const;
@@ -33,15 +53,15 @@ class DLL_Node_T
 
 template<class TData>
 DLL_Node_T<TData>::DLL_Node_T(void):
-value_(),
 prev_(NULL),
-next_(NULL){}
+next_(NULL),
+value_(){}
 
 template<class TData>
 DLL_Node_T<TData>::DLL_Node_T(const TData& value):
-value_(value),
 prev_(NULL),
-next_(NULL){}
+next_(NULL),
+value_(value){}
 
 
 template<class TData>
@@ -73,7 +93,7 @@ void DLL_Node_T<TData>::set_next(DLL_Node_T<TData>* next)
 
 
 template<class TData>
-TData DLL_Node_T<TData>::get_value(void) const
+const TData DLL_Node_T<TData>::get_value(void) const
 {
     return value_;
 }
