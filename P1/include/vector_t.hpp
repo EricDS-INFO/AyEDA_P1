@@ -45,8 +45,13 @@ class Vector_T
         void push_front( TData value);
         void push_back( TData value);
 
+        std::ostream& write(std::ostream& os) const;
+
         TData& operator [](int pos);
         TData  operator [](int pos) const;
+
+        template<class U>
+        friend std::ostream& operator <<(std::ostream& os, Vector_T<U>&);
     
     
     private:
@@ -138,6 +143,19 @@ void Vector_T<TData>::push_back( TData value)
 }
 
 
+template<class TData>
+std::ostream& Vector_T<TData>::write(std::ostream& os) const
+{
+    os << "SIZE: " << sz_ << std::endl;
+    os << "[";
+    for (int i = 0; i < sz_; i++ ) {
+        os << " " << vp_[i];
+    }
+    os << " ]" << std::endl;
+    
+    return os;
+}
+
 // OPERATORS
 
 template<class TData>
@@ -147,11 +165,18 @@ TData& Vector_T<TData>::operator [](int pos)
 }
 
 template<class TData>
-TData  Vector_T<TData>::operator [](int pos) const{
+TData  Vector_T<TData>::operator [](int pos) const
+{
     return value(pos);
 }
     
 
+template<class TData>
+std::ostream& operator <<(std::ostream& os, Vector_T<TData>& v)
+{
+    v.write(os);
+    return os;
+}
 
 // PRIVATE METHODS
 

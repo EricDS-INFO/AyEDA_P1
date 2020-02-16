@@ -5,8 +5,11 @@ SRC_PATH = src
 BUILD_PATH = build
 BIN_PATH = $(BUILD_PATH)/bin
 
+TEST_PATH = tests
+
 # executable # 
 BIN_NAME = runner
+TEST_NAME = p1_test_runner
 
 # extensions #
 SRC_EXT = cpp
@@ -15,6 +18,8 @@ SRC_EXT = cpp
 # Find all source files in the source directory, sorted by
 # most recently modified
 SOURCES = $(shell find $(SRC_PATH) -name '*.$(SRC_EXT)' | sort -k 1nr | cut -f2-)
+
+TEST_SOURCE = $(shell find $(TEST_PATH) -name '*.$(SRC_EXT)' | sort -k 1nr | cut -f2-)
 # Set the object file names, with the source directory stripped
 # from the path, and the build path prepended in its place
 OBJECTS = $(SOURCES:$(SRC_PATH)/%.$(SRC_EXT)=$(BUILD_PATH)/%.o)
@@ -45,6 +50,7 @@ dirs:
 clean:
 	@echo "Deleting $(BIN_NAME) symlink"
 	@$(RM) $(BIN_NAME)
+	@$(RM) $(TEST_NAME)
 	@echo "Deleting directories"
 	@$(RM) -r $(BUILD_PATH)
 	@$(RM) -r $(BIN_PATH)
@@ -70,3 +76,8 @@ $(BIN_PATH)/$(BIN_NAME): $(OBJECTS)
 $(BUILD_PATH)/%.o: $(SRC_PATH)/%.$(SRC_EXT)
 	@echo "Compiling: $< -> $@"
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -MP -MMD -c $< -o $@
+
+test:
+	@echo "Making tests: $(TEST_NAME)"
+	$(CXX) -o $(TEST_NAME) $(TEST_SOURCE) 
+	./$(TEST_NAME) 

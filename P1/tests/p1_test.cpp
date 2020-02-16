@@ -17,7 +17,10 @@
 #define CATCH_CONFIG_MAIN
 #include <catch2/catch.hpp>
 
+
 #include "../include/vector_t.hpp"
+
+// Unit Testing style tests
 
 TEST_CASE( "The vector class tests basic operations", "[Vector_t]" ) 
 {
@@ -73,4 +76,38 @@ TEST_CASE( "The vector class tests basic operations", "[Vector_t]" )
     }
 
   }
+
+  SECTION("Reading and writting the vector") 
+  {    
+    v1[0] = 1;
+    v1[1] = 2;
+    std::cout << v1 << std::endl;
+    
+  }
+}
+
+template<class TData>
+class DLL_T 
+{
+
+};
+
+
+template<class TData>
+class DLL_Node_t
+{
+
+};
+
+// BDD Style tests
+
+SCENARIO( "The doubly linked list basic tests", "[DLL_T]" ) 
+{
+  GIVEN("An instance of DLL_T and DLL_Node_T")
+  {
+    DLL_T<char> list1;
+    DLL_Node_t<char> node1();
+
+  }
+
 }
