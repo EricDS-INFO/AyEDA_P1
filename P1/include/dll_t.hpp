@@ -53,6 +53,10 @@ class DLL_T
         
 };
 
+
+
+// PUBLIC METHODS
+
 template<class TData>
 DLL_T<TData>::DLL_T(void):
 sz_(0),
@@ -214,6 +218,7 @@ std::ostream& DLL_T<TData>::write(std::ostream& os) const
     return os;
 }
 
+// OPERATORS
 
 template<class TData>
 std::ostream& operator <<(std::ostream& os, DLL_T<TData>& list)
