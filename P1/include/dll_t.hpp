@@ -20,6 +20,7 @@
     It uses the "DLL_Node_T" class.
 */
 
+#pragma once
 #include "dll_node_t.hpp"
 
 

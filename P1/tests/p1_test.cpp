@@ -23,6 +23,8 @@
 #include "../include/dll_t.hpp"
 #include "../include/dll_node_t.hpp"
 
+#include "../include/stack_t.hpp"
+
 // Unit Testing style tests
 
 TEST_CASE( "The vector class tests basic operations", "[Vector_T]" ) 
@@ -162,5 +164,45 @@ TEST_CASE( "The doubly linked list basic tests", "[DLL_T]" )
 
 TEST_CASE("The stack class tests basic operations", "[Stack_T]")
 {
+  Stack_T<int> stack1;
 
+  SECTION("Basic Stack tests")
+  {
+    stack1.push(3);
+    stack1.push(1);
+    stack1.push(2);
+
+    REQUIRE(stack1.empty() == false);
+    REQUIRE(stack1.size() == 3);
+    CHECK(stack1.top() == 2);
+
+    SECTION("popping one element deacreases size and sets a different value at the top")
+    {
+      stack1.pop();
+      REQUIRE(stack1.empty() == false);
+      REQUIRE(stack1.size() == 2);
+      CHECK(stack1.top() == 1);
+      
+    }
+    SECTION("popping two element deacreases size and sets a different value at the top")
+    {
+      stack1.pop();
+      stack1.pop();
+      REQUIRE(stack1.empty() == false);
+      REQUIRE(stack1.size() == 1);
+      CHECK(stack1.top() == 3);
+      
+    }
+
+    SECTION("popping all the elements empties the stack")
+    {
+      stack1.pop();
+      stack1.pop();
+      stack1.pop();
+
+      REQUIRE(stack1.empty() == true);
+      REQUIRE(stack1.size() == 0);
+      
+    }
+  }
 }
