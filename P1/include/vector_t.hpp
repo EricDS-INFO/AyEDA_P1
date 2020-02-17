@@ -33,6 +33,7 @@ class Vector_T
     public:   
         Vector_T(void);
         Vector_T(int sz);
+        Vector_T(const Vector_T<TData>& v);
         ~Vector_T(void);
 
         int size(void) const;
@@ -56,6 +57,7 @@ class Vector_T
     
     private:
         void create(void);
+        void copy(Vector_T v);
         void destroy(void);
 };
 
@@ -73,6 +75,16 @@ vp_(NULL),
 sz_(sz)
 { 
   create(); 
+}
+
+template<class TData>
+Vector_T<TData>::Vector_T(const Vector_T<TData>& v):
+vp_(NULL),
+sz_(v.size())
+{ 
+  create(); 
+  copy(v);  
+
 }
 
 template<class TData>
@@ -184,6 +196,13 @@ template<class TData>
 void Vector_T<TData>::create(void)
 {
     vp_ = new TData[sz_];
+}
+
+template<class TData>
+void Vector_T<TData>::copy(Vector_T<TData> v)
+{
+   for (int i = 0; i < sz_; i++)
+        vp_[i] = v[i]; 
 }
 
 template<class TData>
