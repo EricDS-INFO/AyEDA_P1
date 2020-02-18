@@ -15,7 +15,7 @@
 */
 
 #define CATCH_CONFIG_MAIN
-#include "lib/catch2.hpp"
+#include <catch2/catch.hpp>
 
 
 #include "../include/vector_t.hpp"
