@@ -42,7 +42,10 @@ TData Stack_T<TData>::top(void)
 template<class TData>
 void Stack_T<TData>::pop(void)
 {
-    list_.extract_front();
+    assert(!empty());
+    DLL_Node_T<TDato>* aux = list_.extract_front();
+
+    delete aux;
 }
 
 
