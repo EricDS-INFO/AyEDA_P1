@@ -227,7 +227,11 @@ TEST_CASE("The Queue class tests", "[Queue_T]")
 
     SECTION("popping one element deacreases the size in one unit")
     {
+      queue1.pop();
       CHECK(queue1.size() == 2);
+      
+      CHECK(queue1.front() == 2);
+      CHECK(queue1.back() == 3);
     }
   }
 

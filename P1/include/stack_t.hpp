@@ -43,7 +43,7 @@ template<class TData>
 void Stack_T<TData>::pop(void)
 {
     assert(!empty());
-    DLL_Node_T<TDato>* aux = list_.extract_front();
+    DLL_Node_T<TData>* aux = list_.extract_front();
 
     delete aux;
 }
