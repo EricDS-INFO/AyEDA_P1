@@ -209,7 +209,7 @@ std::ostream& DLL_T<TData>::write(std::ostream& os) const
 {
     DLL_Node_T<TData>* aux = head_;
  
-    os << "SIZE" << std::endl;
+    os << "SIZE: " << sz_ <<std::endl;
 
     os << "head -> ";
     if (aux == tail_ && aux == NULL) {

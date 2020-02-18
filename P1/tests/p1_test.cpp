@@ -151,15 +151,13 @@ TEST_CASE( "The doubly linked list basic tests", "[DLL_T]" )
         
         std::cout << list1 << std::endl;
       }
-    
-    }
-
       SECTION("Reading an empty list: ")
       {
         std::cout << "\n\nTESTING  EMPTY LIST" << std::endl;
-        list1.write(std::cout);
-        //std::cout << list1 << std::endl;
+        //list1.write(std::cout);
+        std::cout << list1 << std::endl;
       }
+    }
     
   
 }
@@ -208,12 +206,22 @@ TEST_CASE("The stack class tests basic operations", "[Stack_T]")
 
     SECTION("Reading and writting the vector") 
     {    
-      std::cout << "\n\n TESTING THE STACK \n";
+      std::cout << "\n\nTESTING THE NON EMPTY STACK \n";
+      
       stack1.write(std::cout);
       //std::cout << stack1 << std::endl;
     
     }
   }
+
+    SECTION("Reading and writting the vector") 
+    {    
+      std::cout << "\n\nTESTING THE EMPTY STACK \n";
+      
+      stack1.write(std::cout);
+      //std::cout << stack1 << std::endl;
+    
+    }
 }
 
 

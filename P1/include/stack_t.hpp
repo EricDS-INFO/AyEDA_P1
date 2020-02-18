@@ -68,3 +68,22 @@ int Stack_T<TData>::size(void)
 {
     return list_.size();
 }
+
+
+template<class TData>
+std::ostream& Stack_T<TData>::write(std::ostream& os)
+{   
+    os << "SIZE: " << list_.size() << "\n\n";
+
+    os << "#     #" << std::endl;
+    if (!empty()) {
+        DLL_Node_T<TData>* aux = list_.get_front();
+        while (aux) {
+            os <<"|  " << aux->get_value() <<"  |" <<std::endl;
+            aux = aux->get_next();
+        }
+    }
+
+    os << "=======" << std::endl;
+    return os;
+}
