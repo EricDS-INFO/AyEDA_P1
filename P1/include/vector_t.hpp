@@ -169,7 +169,7 @@ TData  Vector_T<TData>::operator [](int pos) const
 {
     return value(pos);
 }
-    
+
 
 template<class TData>
 std::ostream& operator <<(std::ostream& os, Vector_T<TData>& v)

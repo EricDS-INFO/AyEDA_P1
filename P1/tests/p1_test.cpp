@@ -75,6 +75,17 @@ TEST_CASE( "The vector class tests basic operations", "[Vector_t]" )
       CHECK( v1[2] == 3 );
     }
 
+    SECTION( "copy of vector does not copy the reference")
+    {
+      Vector_T<int> v2(v1);
+
+      REQUIRE(v2.size() == 2);
+      CHECK( v2[0] == v1[0]  );
+      CHECK( v2[1] == v1[1]  );
+      CHECK( &v2 != &v1 );
+      
+    }
+
   }
 
   SECTION("Reading and writting the vector") 
