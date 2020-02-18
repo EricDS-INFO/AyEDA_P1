@@ -27,6 +27,7 @@
 
 #include "../include/queue_t.hpp"
 
+
 // Unit Testing style tests
 
 TEST_CASE( "The vector class tests basic operations", "[Vector_T]" ) 
@@ -210,6 +211,6 @@ TEST_CASE("The stack class tests basic operations", "[Stack_T]")
 
 TEST_CASE("The Queue class tests", "[Queue_T]")
 {
-  //Queue_T queue1;
+  Queue_T queue1;
 
 }
