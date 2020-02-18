@@ -8,11 +8,15 @@ class Queue_T {
         DLL_T<TData> list_;
 
     public:
-        Queue_T():
+        Queue_T(void):
         list_(){}
 
-        Queue_T( Queue_T<TData>& other_q );
+        ~Queue_T(void){};
 
-        ~Queue_T(){};        
+    //TData front(void);    
+    //TData back(void);    
+
+    //void push(TData value);    
+    //void pop(void);
 
 };
