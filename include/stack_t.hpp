@@ -1,3 +1,21 @@
+// [stack_t.cpp]
+//
+// AUTOR: Eric Dürr Sierra.
+// DATE:  February 2020
+// 
+// SUBJECT: AyEDA (Algoritmos y Estructuras de Datos Avanzadas)
+//
+// Ingeniería informática - ESIT ULL 
+// (Escuela Superior de Ingeniería y Tecnología - Universidad de La Laguna)
+//
+// DESCRIPTION:
+/*
+   List based Stack class. Contains the basic operations of the stack class
+   TAD implementation.
+*/
+
+
+
 #include <iostream>
 #include "dll_t.hpp"
 

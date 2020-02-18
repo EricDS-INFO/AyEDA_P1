@@ -1,3 +1,20 @@
+// [queue_t.cpp]
+//
+// AUTOR: Eric Dürr Sierra.
+// DATE:  February 2020
+// 
+// SUBJECT: AyEDA (Algoritmos y Estructuras de Datos Avanzadas)
+//
+// Ingeniería informática - ESIT ULL 
+// (Escuela Superior de Ingeniería y Tecnología - Universidad de La Laguna)
+//
+// DESCRIPTION:
+/*
+   List based queue class. Contains the basic operations of the queue class
+   TAD implementation.
+*/
+
+
 #include <iostream>
 
 #include "dll_t.hpp"

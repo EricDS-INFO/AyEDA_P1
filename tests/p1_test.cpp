@@ -1,4 +1,4 @@
-// [vector_t_test.cpp]
+// [p1_test.cpp]
 //
 // AUTOR: Eric Dürr Sierra.
 // DATE:  February 2020
@@ -15,8 +15,9 @@
 */
 
 #define CATCH_CONFIG_MAIN
-#include <catch2/catch.hpp>
-#include "lib/catch2.hpp"
+
+// #include <catch2/catch.hpp>
+#include "lib/Catch/catch2/catch.hpp"
 
 
 
