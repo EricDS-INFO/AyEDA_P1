@@ -25,6 +25,8 @@
 
 #include "../include/stack_t.hpp"
 
+#include "../include/queue_t.hpp"
+
 // Unit Testing style tests
 
 TEST_CASE( "The vector class tests basic operations", "[Vector_T]" ) 
@@ -91,7 +93,6 @@ TEST_CASE( "The vector class tests basic operations", "[Vector_T]" )
     
   }
 }
-
 
 
 TEST_CASE( "The doubly linked list basic tests", "[DLL_T]" ) 
@@ -190,8 +191,7 @@ TEST_CASE("The stack class tests basic operations", "[Stack_T]")
       stack1.pop();
       REQUIRE(stack1.empty() == false);
       REQUIRE(stack1.size() == 1);
-      CHECK(stack1.top() == 3);
-      
+      CHECK(stack1.top() == 3);    
     }
 
     SECTION("popping all the elements empties the stack")
@@ -205,4 +205,11 @@ TEST_CASE("The stack class tests basic operations", "[Stack_T]")
       
     }
   }
+}
+
+
+TEST_CASE("The Queue class tests", "[Queue_T]")
+{
+  //Queue_T queue1;
+
 }

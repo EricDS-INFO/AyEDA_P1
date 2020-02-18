@@ -34,7 +34,10 @@ class DLL_T
         int sz_;
 
     public:
+        
         DLL_T(void);
+        DLL_T(DLL_T<TData>& other_l);
+
         ~DLL_T(void);
     
         void push_back(DLL_Node_T<TData>* node);
@@ -66,6 +69,7 @@ DLL_T<TData>::DLL_T(void):
 sz_(0),
 head_(NULL),
 tail_(NULL){}
+
 
 template<class TData>
 DLL_T<TData>::~DLL_T(void)

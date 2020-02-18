@@ -10,8 +10,11 @@ class Stack_T
     
     public:
 
-        Stack_T(void);
-        ~Stack_T(void);
+        Stack_T(void):
+        list_(){}
+        Stack_T(Stack_T<TData>& other_s);
+
+        ~Stack_T(void){}
 
         TData top(void);
 
@@ -21,19 +24,8 @@ class Stack_T
         bool empty(void);
         int size(void);
 
+        std::ostream& write(std::ostream& os);
 };
-
-
-
-template<class TData>
-Stack_T<TData>::Stack_T(void):
-sz_(0)
-{}
-
-
-template<class TData>
-Stack_T<TData>::~Stack_T(void)
-{}
 
 
 template<class TData>
@@ -50,9 +42,7 @@ TData Stack_T<TData>::top(void)
 template<class TData>
 void Stack_T<TData>::pop(void)
 {
-
     list_.extract_front();
-    sz_ --;
 }
 
 
@@ -60,7 +50,6 @@ template<class TData>
 void Stack_T<TData>::push(TData value)
 {
     list_.push_front(new DLL_Node_T<TData>(value));
-    sz_ ++;
 }
 
 
@@ -74,5 +63,5 @@ bool Stack_T<TData>::empty(void)
 template<class TData>
 int Stack_T<TData>::size(void)
 {
-    return sz_;
+    return list_.size();
 }

@@ -33,7 +33,8 @@ class Vector_T
     public:   
         Vector_T(void);
         Vector_T(int sz);
-        Vector_T(const Vector_T<TData>& v);
+        Vector_T(const Vector_T<TData>& other_v);
+
         ~Vector_T(void);
 
         int size(void) const;
@@ -78,12 +79,12 @@ sz_(sz)
 }
 
 template<class TData>
-Vector_T<TData>::Vector_T(const Vector_T<TData>& v):
+Vector_T<TData>::Vector_T(const Vector_T<TData>& other_v):
 vp_(NULL),
-sz_(v.size())
+sz_(other_v.size())
 { 
   create(); 
-  copy(v);  
+  copy(other_v);  
 
 }
 
