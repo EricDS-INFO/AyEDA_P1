@@ -205,6 +205,14 @@ TEST_CASE("The stack class tests basic operations", "[Stack_T]")
       REQUIRE(stack1.size() == 0);
       
     }
+
+    SECTION("Reading and writting the vector") 
+    {    
+      std::cout << "\n\n TESTING THE STACK \n";
+      stack1.write(std::cout);
+      //std::cout << stack1 << std::endl;
+    
+    }
   }
 }
 
