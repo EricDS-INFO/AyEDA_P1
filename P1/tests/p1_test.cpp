@@ -211,6 +211,24 @@ TEST_CASE("The stack class tests basic operations", "[Stack_T]")
 
 TEST_CASE("The Queue class tests", "[Queue_T]")
 {
-  Queue_T queue1;
+  Queue_T<int> queue1;
+
+  REQUIRE(queue1.empty() == true);
+
+  SECTION("pushing elements to the queue increases the size and gives a certain order to them") 
+  {
+    queue1.push(1);
+    queue1.push(2);
+    queue1.push(3);
+
+    REQUIRE(queue1.size() == 3);
+    CHECK(queue1.front() == 1);
+    CHECK(queue1.back() == 3);
+
+    SECTION("popping one element deacreases the size in one unit")
+    {
+      CHECK(queue1.size() == 2);
+    }
+  }
 
 }
