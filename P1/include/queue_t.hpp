@@ -21,6 +21,12 @@ class Queue_T {
 
         int size(void);
         bool empty(void);
+
+        std::ostream& write(std::ostream& os);
+
+
+        template<class U>
+        friend std::ostream& operator <<(std::ostream& os, Queue_T<U>&);
 };
 
 
@@ -65,4 +71,41 @@ template<class TData>
 bool Queue_T<TData>::empty(void)
 {
     return list_.empty();
+}
+
+
+
+template<class TData>
+std::ostream& Queue_T<TData>::write(std::ostream& os)
+{
+
+    os << "SIZE: " << list_.size() << "\n\n";
+    os << "    ";
+    for (int i = 0; i < list_.size(); i++) {
+        os << "---";
+    }
+    os << "    " << std::endl;
+    os << "|<- ";
+    if (!empty()) {
+        DLL_Node_T<TData>* aux = list_.get_front();
+        while (aux) {
+            os << " "<< aux->get_value() << " ";
+            aux = aux->get_next();
+        }
+    }
+    os << " <-|" << std::endl;
+    os << "    ";
+    for (int i = 0; i < list_.size(); i++) {
+        os << "¯¯¯";
+    }
+    os << "    " << std::endl;
+    return os;
+}
+
+
+template<class TData>
+std::ostream& operator<< (std::ostream& os, Queue_T<TData>& q )
+{
+    q.write(os);
+    return os;
 }

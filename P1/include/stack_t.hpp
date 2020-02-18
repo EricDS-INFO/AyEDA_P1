@@ -25,6 +25,9 @@ class Stack_T
         int size(void);
 
         std::ostream& write(std::ostream& os);
+
+        template<class U>
+        friend std::ostream& operator <<(std::ostream& os, Stack_T<U>&);
 };
 
 
@@ -85,5 +88,13 @@ std::ostream& Stack_T<TData>::write(std::ostream& os)
     }
 
     os << "=======" << std::endl;
+    return os;
+}
+
+
+template<class TData>
+std::ostream& operator <<(std::ostream& os, Stack_T<TData>& stack)
+{
+    stack.write(os);
     return os;
 }

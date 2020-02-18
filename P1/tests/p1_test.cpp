@@ -204,22 +204,22 @@ TEST_CASE("The stack class tests basic operations", "[Stack_T]")
       
     }
 
-    SECTION("Reading and writting the vector") 
+    SECTION("Reading and writting the stack") 
     {    
       std::cout << "\n\nTESTING THE NON EMPTY STACK \n";
       
-      stack1.write(std::cout);
-      //std::cout << stack1 << std::endl;
+      //stack1.write(std::cout);
+      std::cout << stack1 << std::endl;
     
     }
   }
 
-    SECTION("Reading and writting the vector") 
+    SECTION("Reading and writting the stack") 
     {    
       std::cout << "\n\nTESTING THE EMPTY STACK \n";
       
-      stack1.write(std::cout);
-      //std::cout << stack1 << std::endl;
+      //stack1.write(std::cout);
+      std::cout << stack1 << std::endl;
     
     }
 }
@@ -249,6 +249,35 @@ TEST_CASE("The Queue class tests", "[Queue_T]")
       CHECK(queue1.front() == 2);
       CHECK(queue1.back() == 3);
     }
+  
+    SECTION("Reading and writting the queue") 
+    {    
+      std::cout << "\n\nTESTING THE NON EMPTY STACK \n";
+      
+      //queue1.write(std::cout);
+      std::cout << queue1 << std::endl;
+    
+    }
+    SECTION("Reading and writting the queue after one element is pushed and the first is popped") 
+    {    
+      queue1.push(4);
+      queue1.pop();
+      std::cout << "\n\nTESTING THE NON EMPTY STACK -> rotating elements \n";
+      
+      //queue1.write(std::cout);
+      std::cout << queue1 << std::endl;
+    
+    }
+
   }
+
+    SECTION("Reading and writting the queue") 
+    {    
+      std::cout << "\n\nTESTING THE EMPTY STACK \n";
+      
+      queue1.write(std::cout);
+      //std::cout << stack1 << std::endl;
+    
+    }
 
 }
