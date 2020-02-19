@@ -21,6 +21,8 @@
 */
 
 #pragma once
+#include <cassert>
+
 #include "dll_node_t.hpp"
 
 
@@ -36,8 +38,7 @@ class DLL_T
     public:
         
         DLL_T(void);
-        DLL_T(DLL_T<TData>& other_l);
-
+       
         ~DLL_T(void);
     
         void push_back(DLL_Node_T<TData>* node);
