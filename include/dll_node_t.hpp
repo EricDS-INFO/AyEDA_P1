@@ -47,6 +47,8 @@ class DLL_Node_T
         DLL_Node_T<TData>* get_next(void) const;
         DLL_Node_T<TData>* get_prev(void) const;
 
+        template<class U>
+        friend std::ostream& operator<< (std::ostream& os, DLL_Node_T<U>* my_node);
 
 };
 
@@ -108,4 +110,13 @@ template<class TData>
 DLL_Node_T<TData>* DLL_Node_T<TData>::get_next(void) const
 {
     return next_;
+}
+
+
+template<class TData>
+std::ostream& operator<< (std::ostream& os, DLL_Node_T<TData>* my_node)
+{
+    os << my_node->value_;
+
+    return os;
 }

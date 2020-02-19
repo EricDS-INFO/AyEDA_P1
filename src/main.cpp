@@ -26,7 +26,22 @@ struct Book
 {
     std::string isbn;
     std::string title;
+
+    std::ostream& write(std::ostream& os)
+    {
+        os << "| " << title << " | " << isbn << " |";
+        return os;
+    
+    }
+
+    friend std::ostream& operator<< (std::ostream& os, Book& my_book)
+    {
+        my_book.write(os);
+        return os;
+    }
+
 };
+
 
 
 struct Subject
@@ -35,6 +50,7 @@ struct Subject
     std::string name;
 
     DLL_T<Book> bibl;
+ 
 };
 
 
@@ -59,7 +75,8 @@ int main(void ) {
     book2.isbn = "?????";
     book2.title = "second book";
     
-    
+    std::cout << book1 << std::endl;
+
     itinerary[0].st_code = "00a0";
     itinerary[0].name = "Advanced Maths";
     itinerary[0].bibl.push_back(new DLL_Node_T<Book> (book1));
@@ -71,7 +88,10 @@ int main(void ) {
     itinerary[1].bibl.push_back(new DLL_Node_T<Book> (book2));
     
 
-    ver_biblio(itinerary, "0000");
+    ver_biblio(itinerary, "00a0");
+
+
+            
     
 
 }
@@ -84,9 +104,9 @@ void ver_biblio(Vector_T<Subject>& itinerary, std::string st_code)
         if (itinerary[i].st_code == st_code) {
             std::string name = itinerary[i].name; 
             std::cout << "Bibliografía de la asignatura " << name <<": " << std::endl;
-        
+            
             std::cout << "\n\n";
-            itinerary[i].bibl.write(std::cout);
+            std::cout << itinerary[i].bibl;
             std::cout << std::endl;
         }
     }

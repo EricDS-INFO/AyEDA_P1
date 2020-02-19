@@ -54,7 +54,7 @@ class DLL_T
         bool contains(DLL_Node_T<TData>* node);
         bool empty(void);
 
-        std::ostream& write(std::ostream& os) const;
+        std::ostream& write(std::ostream& os) ;
 
         template<class U>
         friend std::ostream& operator <<(std::ostream& os, DLL_T<U>& list);
@@ -206,7 +206,7 @@ bool DLL_T<TData>::empty(void)
         
 
 template<class TData>
-std::ostream& DLL_T<TData>::write(std::ostream& os) const
+std::ostream& DLL_T<TData>::write(std::ostream& os)
 {
     DLL_Node_T<TData>* aux = head_;
  
@@ -218,7 +218,7 @@ std::ostream& DLL_T<TData>::write(std::ostream& os) const
     } else {
 
         while (aux) {
-            os << "[" << aux->get_value() << "] ";
+            os << "[" << aux << "] ";
             aux = aux->get_next();
         }
     }
